@@ -18,29 +18,6 @@ void dfs(int u){
   }
 }
 
-
-// bfs
-void bfs(int s){
-  queue<int> q;
-  q.push(s);
-  visited[s]=true;
-  level[s]=0;
-  while (!q.empty())
-  {
-    int u= q.front();
-    q.pop();
-    for (int v: adj[u])
-    {
-      if(visited[v]==true) continue;
-      q.push(v);
-      visited[v]=true;
-
-    }
-    //section 4: same as section 1
-  }
-  
-}
-
 int main(){
     
     int n,m;
@@ -54,7 +31,7 @@ int main(){
       adj[u].push_back(v);
       adj[v].push_back(u);
     }
-    bfs(1);
+    // bfs(1);
 
 
     // connected component count 

@@ -3,23 +3,23 @@
 using namespace std;
 
 const int N = 1e5 + 5; 
-vector<int> adj[N]; 
+vector<pair<int, int>> adj[N]; 
 
 int main() {
     int n, m;
     cin >> n >> m;
 
     for (int i = 1; i <= m; i++) {
-        int u, v;
-        cin >> u >> v;
-        adj[u].push_back(v); // for direction
-        // adj[v].push_back(u); // undirection both
+        int u, v, w;
+        cin >> u >> v >> w;
+        adj[u].push_back({v, w}); // for direction
+        adj[v].push_back({u, w}); // undirection both
     }
 
     for (int i = 1; i <= n; i++) {
        cout << i << " : ";
-       for(int j: adj[i])
-          cout << j << " ";
+       for (auto j : adj[i])
+           cout << "(" << j.first << "," << j.second << ") ";
        cout << endl;
     }
     

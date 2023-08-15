@@ -1,0 +1,9 @@
+3
+Parent of 1:-1
+Parent of 2:1
+Parent of 3:1
+Parent of 4:3
+Parent of 5:2
+Parent of 6:5
+Parent of 7:5
+Path : 1 2 5 7 

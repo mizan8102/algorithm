@@ -1,16 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N = 1e3+5;
-vector<int> adj[N];
-bool visited[N];
+const int N = 1e3 + 5;
+vector<vector<int>> adj(N);
+vector<bool> visited(N, false);
 
-void dfs(int u, int &componentSize) {
-    visited[u] = true;
-    componentSize++;
-    for (int v : adj[u]) {
-        if (!visited[v]) {
-            dfs(v, componentSize);
+void dfs(int i, int& c) {
+    visited[i] = true;
+    c++;
+    for (int s : adj[i]) {
+        if (!visited[s]) {
+            dfs(s, c);
         }
     }
 }
@@ -18,31 +18,25 @@ void dfs(int u, int &componentSize) {
 int main() {
     int n, m;
     cin >> n >> m;
-    
     for (int i = 0; i < m; i++) {
         int u, v;
         cin >> u >> v;
         adj[u].push_back(v);
-        adj[v].push_back(u); // Since it's an undirected graph
+        adj[v].push_back(u);
     }
-
-    vector<int> componentSizes;
-
-    for (int i = 0; i < n; i++) {
+    vector<int> total;
+    for (int i = 1; i <= n; i++) {
         if (!visited[i]) {
-            int componentSize = 0;
-            dfs(i, componentSize);
-            if (componentSize > 1) {
-                componentSizes.push_back(componentSize);
+            int c = 0;
+            dfs(i, c);
+            if (c >= 2) {
+                total.push_back(c);
             }
         }
     }
-
-    sort(componentSizes.begin(), componentSizes.end());
-
-    for (int size : componentSizes) {
-        cout << size << " ";
+    sort(total.begin(), total.end());
+    for (int ch : total) {
+        cout << ch << " ";
     }
-
     return 0;
 }

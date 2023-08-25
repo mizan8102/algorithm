@@ -1,37 +1,37 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #include <iostream>
 using namespace std;
 
 const int N = 21; 
-vector<int> adj[N];
-bool visited[N];
+vector<vector<int>> adj(N);
+vector<bool> visited(N, false);
 
-void dfs(int u) {
-    visited[u] = true;
-    for (int v : adj[u]) {
-        if (!visited[v]) {
-            dfs(v);
+void dfs(int i) {
+    visited[i] = true;
+    for (int n : adj[i]) {
+        if (!visited[n]) {
+            dfs(n);
         }
     }
 }
-
 int main() {
     int n, m;
-    cin >> n >> m; 
-    for (int i = 0; i < m; i++) {
+    cin >> n >> m;
+    for (int i = 0; i < m; ++i) {
         int u, v;
         cin >> u >> v;
-        adj[v].push_back(u);
-    }  
-    int val;
-    cin >> val;
-    dfs(val);
-    int c = 0;
-    for (int i = 0; i < n; i++) {
-        if (visited[i]) {
-            c++;
+        adj[u].push_back(v);
+    }
+    int q;
+    cin >> q; 
+    dfs(q);
+
+    int r = 0;
+    for (bool v : visited) {
+        if (v) {
+            r++;
         }
     }
-    cout << c << endl;
+    cout << r - 1 << endl; 
     return 0;
 }

@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-const int N = 1e3 + 5;
+const int N = 1e5 + 5;
 vector<int> adj[N];
 bool visited[N];
 int level[N];
@@ -12,7 +12,6 @@ void bfs(int s) {
     q.push(s);
     visited[s] = true;
     level[s] = 0;
-    
     while (!q.empty()) {
         int u = q.front();
         q.pop();
@@ -24,7 +23,6 @@ void bfs(int s) {
         }
     }
 }
-
 int main() {
     int n, m;
     cin >> n >> m;
@@ -41,6 +39,7 @@ int main() {
         cin >> s >> d;
         for (int i = 0; i <= n; i++) {
             visited[i] = false;
+            level[i] = 0;
         }
         bfs(s);
         visited[d] ? cout << level[d] << endl : cout << -1 << endl;
